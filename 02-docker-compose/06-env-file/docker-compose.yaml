@@ -1,0 +1,5 @@
+version: "3"
+services:
+  demo:
+    image: vinsdocker/sel-app:${VERSION}
+    ports: -80:80

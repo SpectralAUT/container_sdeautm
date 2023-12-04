@@ -1,0 +1,6 @@
+version: "3"
+services:
+  squares:
+    image: nginx
+    ports:
+    - 80:80   
