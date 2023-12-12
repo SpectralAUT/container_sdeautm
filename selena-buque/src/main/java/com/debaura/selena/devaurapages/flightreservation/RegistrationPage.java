@@ -1,17 +1,20 @@
 package com.debaura.selena.devaurapages.flightreservation;
 
+import com.debaura.selena.devaurapages.AbsBasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class RegistrationPage {
-    private WebDriver driver;
-
-    public RegistrationPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, );
+public class RegistrationPage extends AbsBasePage {
+    @Override
+    public boolean isAt() {
+        this.wait.until(ExpectedConditions.visibilityOf(this.firstnameinput));
+        return this.firstnameinput.isDisplayed();
     }
+
+    private WebDriver driver;
 
 
     public void enterUserDetails(String firstName, String lastName) {
@@ -33,6 +36,10 @@ public class RegistrationPage {
         this.zipinput.sendKeys(zip);
     }
 
+    public RegistrationPage(WebDriver driver) {
+        super(driver);
+    }
+
 
     public void register() {
         this.registerbutton.click();
@@ -42,7 +49,6 @@ public class RegistrationPage {
     public void goTo(String url) {
         this.driver.get(url);
     }
-
 
     @FindBy(id = "firstName")
     private WebElement firstnameinput;
@@ -58,8 +64,8 @@ public class RegistrationPage {
     private WebElement zipinput;
     @FindBy(id = "register-btn")
     private WebElement registerbutton;
+
     @FindBy(name = "city")
     private WebElement cityinput;
-
 
 }
